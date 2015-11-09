@@ -9,7 +9,7 @@ RUN \
 #allow node user to run services on port 80 and 443 (when prefixed with 'authbind')
 RUN \
   apt-get update && \
-  apt-get install -y authbind && \
+  apt-get install -y authbind git && \
   rm -rf /var/lib/apt/lists/* && \
   touch /etc/authbind/byport/443 && \
   touch /etc/authbind/byport/80 && \
