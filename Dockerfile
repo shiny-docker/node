@@ -6,6 +6,6 @@ RUN \
 EXPOSE 80
 EXPOSE 443
 
-ENV NODE_ENV production
+ENV NODE_ENV build
 
 CMD ["/run.sh"]
