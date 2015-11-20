@@ -28,7 +28,8 @@ USER node
 
 ENV NODE_ENV production
 
-ONBUILD COPY ./ /var/www
+ONBUILD COPY ./package.json /var/www/package.json
 ONBUILD RUN cd /var/www; npm install --production
+ONBUILD COPY ./ /var/www
 
 CMD ["/run.sh"]
