@@ -28,8 +28,9 @@ USER node
 
 ENV NODE_ENV production
 
-ONBUILD COPY ./package.json /var/www/package.json
-ONBUILD RUN cd /var/www; npm install --production
+#npm install might depend on more than just package.json (e.g. bower.json), so just copy everything
 ONBUILD COPY ./ /var/www
+ONBUILD RUN chown -R node:node /var/www
+ONBUILD RUN cd /var/www; npm install --production
 
 CMD ["/run.sh"]
