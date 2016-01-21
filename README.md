@@ -11,7 +11,7 @@ As of onbuild-1.1.0, nothing is npm installed globally, so running mocha and oth
 
 ## `onbuild` tag
 Build an app and run it out of the box.
-* Base the child image on shinydocker/node:onbuild-1.1.0
+* Base the child image on shinydocker/node:onbuild-1.1.1
 * Place app code in root of build
 	* At a minimum, add `package.json` for npm `start` script (including a `prestart` script for `npm install` if needed)
     * Add .dockerignore to keep any desired files from being added to the image
