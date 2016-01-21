@@ -1,10 +1,8 @@
 FROM node:4.1.2-slim
 
-COPY run.sh /run.sh
 #install node dependencies
 #allow node user to run services on port 80 and 443 (when prefixed with 'authbind')
 RUN \
-  npm install -g forever nodemon grunt-cli node-inspector mocha bower && \
   mkdir -p /var/www && \
   useradd -ms /sbin/nologin node && \
   chown -R node:node /var/www && \
@@ -37,4 +35,4 @@ ONBUILD USER node
 
 ONBUILD RUN cd /var/www; npm install --production
 
-CMD ["/run.sh"]
+CMD ["authbind", "--deep", "npm", "start"]
