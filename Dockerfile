@@ -22,7 +22,6 @@ WORKDIR /var/www/
 EXPOSE 80
 EXPOSE 443
 
-
 ENV NODE_ENV production
 
 #npm install might depend on more than just package.json (e.g. bower.json), so just copy everything
@@ -32,6 +31,9 @@ ONBUILD RUN chown -R node:node /var/www
 
 USER node
 ONBUILD USER node
+
+RUN \
+  export PATH=$PATH:/var/www/node_modules/.bin
 
 ONBUILD RUN cd /var/www; npm install --production
 
