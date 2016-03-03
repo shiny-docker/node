@@ -25,9 +25,8 @@ EXPOSE 80
 EXPOSE 443
 
 USER node
-RUN \
-  export PATH=$PATH:/var/www/node_modules/.bin
 
 ENV NODE_ENV production
+ENV PATH $PATH:/var/www/node_modules/.bin
 
 CMD ["/run.sh"]
