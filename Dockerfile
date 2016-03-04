@@ -29,4 +29,5 @@ USER node
 ENV NODE_ENV production
 ENV PATH $PATH:/var/www/node_modules/.bin
 
-CMD ["/run.sh"]
+ENTRYPOINT ["authbind", "--deep"]
+CMD ["npm", "start"]
