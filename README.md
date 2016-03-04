@@ -1,21 +1,15 @@
 ##Description
-Basic Node JS server template.
-Runs as unprivileged `node` user, so it is a little more secure
+Base builder image for CI-enabled Node.js projects
+
+Npm dev dependencies should be installed, since `NODE_ENV` is set to `CI`. Binaries included by npm should be runnable, since `PATH` includes `/var/www/node_modules/.bin`
+
+Compile and minify during the build process. Add compiled/minified files to the image during docker build with the Dockerfile
 
 ##Usage
-* Run by itself or as a parent docker image, exposes volume /var/www as code directory
-* Runs `npm install` and `npm start` by default (with authbind), exposes ports 80 and 443
-
-##`onbuild` tag
-Build an app and run it out of the box.
-* Base the child image on shiny-docker/node:onbuild
-* Place app code in root of build
-	* At a minimum, add `package.json` for npm install and npm start script
-    * Add .dockerignore to keep any desired files from being added to the image
-* Build app and run as normal, e.g. `docker build -t dev ./ && docker run -d -p 80:80 dev`
-
-##Debugging
-* Run debugger web server listening in background with `node-inspector --web-port 8080 > /dev/null 2>&1 &`, or run in separate screen (not sure how to suppress output)
-* Start script with debugging enabled, e.g. `node debug index.js`
-* Go to server.com:8080/?port=5858 to see debugger window, run script to start server
-* Replicate the conditions at server.com under which the debugger should break (note: might be unable to set breakpoints in anonymous functions until they have been declared, i.e. when server has started)
+* Ensure all required devDependencies are included in package.json
+* Ensure `node_modulse` is in .dockerignore so that devDependencies don't make it into the built image
+* Ensure all source files are included in .dockerignore (e.g. files that are minified by grunt)
+* update .drone.yml in repo to use this image in the `build:` section
+* run any commands needed to pull in files from external sources (e.g. npm install, bower install)
+* run any commands needed to compile files from sources (e.g. grunt)
+* run any commands needed to test code (e.g. mocha, karma)
