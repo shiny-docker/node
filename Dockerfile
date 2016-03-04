@@ -34,4 +34,5 @@ ONBUILD USER node
 
 ONBUILD RUN cd /var/www; npm install --production
 
-CMD ["authbind", "--deep", "npm", "start"]
+ENTRYPOINT ["authbind", "--deep"]
+CMD ["npm", "start"]
