@@ -25,7 +25,7 @@ EXPOSE 443
 USER node
 
 ENV NODE_ENV production
-ENV PATH $PATH:/var/www/node_modules/.bin
+ENV PATH /var/www/node_modules/.bin:$PATH
 
 ENTRYPOINT ["authbind", "--deep"]
 CMD ["npm", "start"]
