@@ -1,6 +1,5 @@
 FROM node:4.1.2-slim
 
-COPY run.sh /run.sh
 #install node dependencies
 #allow node user to run services on port 80 and 443 (when prefixed with 'authbind')
 RUN \
@@ -16,8 +15,7 @@ RUN \
   chown -R node:node /etc/authbind/byport/ && \
   chmod -R 755 /etc/authbind/byport/ && \
   apt-get clean && \
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-  chmod +x /run.sh
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /var/www/
 
