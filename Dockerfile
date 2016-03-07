@@ -9,6 +9,6 @@ EXPOSE 80
 EXPOSE 443
 
 ENV NODE_ENV CI
-ENV PATH $PATH:/var/www/node_modules/.bin
+ENV PATH /var/www/node_modules/.bin:$PATH
 
 CMD ["npm", "start"]
