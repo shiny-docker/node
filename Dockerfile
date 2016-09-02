@@ -3,7 +3,7 @@ FROM node:6.5.0-slim
 #install node dependencies
 #allow node user to run services on port 80 and 443 (when prefixed with 'authbind')
 RUN \
-  npm install -g npm && \
+  #npm install -g npm && \
   mkdir -p /var/www && \
   useradd -ms /sbin/nologin node && \
   chown -R node:node /var/www && \
