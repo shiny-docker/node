@@ -8,13 +8,14 @@ As of onbuild-1.1.0, nothing is npm installed globally, so running mocha and oth
 * Run by itself or as a parent docker image, exposes volume /var/www as code directory
 * Runs `npm start` by default (with authbind), exposes ports 80 and 443
   * If `npm install` is required, add that as a `prestart` script in the project's package.json
+* Running as root user during development when attaching a volume to the host may prevent permission problems, but ensure that everything will still work when running in production as the `node` user
 
 ## `onbuild` tag
 Build an app and run it out of the box.
-* Base the child image on shinydocker/node:onbuild-1.1.8
+* Base the child image on shinydocker/node:onbuild-1.2.0
 * Place app code in root of build
-	* At a minimum, add `package.json` for npm `start` script (including a `prestart` script for `npm install` if needed)
-    * Add .dockerignore to keep any desired files from being added to the image
+  * At a minimum, add `package.json` for npm `start` script (including a `prestart` script for `npm install` if needed)
+  * Add .dockerignore to keep any desired files from being added to the image
 * Build app and run as normal, e.g. `docker build -t dev ./ && docker run -d -p 80:80 dev`
 
 ## Debugging

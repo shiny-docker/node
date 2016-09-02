@@ -1,4 +1,4 @@
-FROM node:4.1.2-slim
+FROM node:6.5.0-slim
 
 #install node dependencies
 #allow node user to run services on port 80 and 443 (when prefixed with 'authbind')
