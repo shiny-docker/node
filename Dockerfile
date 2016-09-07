@@ -1,7 +1,6 @@
-FROM node:4.1.2-slim
+FROM node:6.3.1-slim
 
 RUN \
-  npm install -g npm && \
   apt-get update && \
   apt-get install -y git
 
