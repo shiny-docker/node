@@ -4,6 +4,10 @@ FROM node:6.3.1-slim
 #allow node user to run services on port 80 and 443 (when prefixed with 'authbind')
 RUN \
   #npm install -g npm && \
+  cd $(npm root -g)/npm && \
+  npm install fs-extra && \
+  sed -i -e s/graceful-fs/fs-extra/ -e s/fs\.rename/fs.move/ ./lib/utils/rename.js && \
+  cd - && \
   mkdir -p /var/www && \
   useradd -ms /sbin/nologin node && \
   chown -R node:node /var/www && \
